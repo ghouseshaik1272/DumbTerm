@@ -1,0 +1,48 @@
+services:
+  glinux:
+    build:
+      context: ..
+    restart: unless-stopped
+    expose:
+      - "3000"
+    volumes:
+      - ../config:/root/.config
+      - ../data:/root/data
+    environment:
+      TZ: ${DUMBTERM_TZ:-Asia/Kolkata}
+      SITE_TITLE: GLinux
+      DUMBTERM_PIN: ${DUMBTERM_PIN:?Set DUMBTERM_PIN in .env.production}
+      BASE_URL: https://${GLINUX_DOMAIN:?Set GLINUX_DOMAIN in .env.production}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-https://learn.devopsbyghouse.co.in}
+      NODE_ENV: production
+      DEMO_MODE: "false"
+      ENABLE_STARSHIP: ${ENABLE_STARSHIP:-true}
+      LOCKOUT_TIME: ${DUMBTERM_LOCKOUT_TIME:-15}
+      MAX_SESSION_AGE: ${DUMBTERM_MAX_SESSION_AGE:-24}
+    networks:
+      - glinux-internal
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - glinux
+    environment:
+      GLINUX_DOMAIN: ${GLINUX_DOMAIN:?Set GLINUX_DOMAIN in .env.production}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - glinux-internal
+
+networks:
+  glinux-internal:
+
+volumes:
+  caddy_data:
+  caddy_config:
