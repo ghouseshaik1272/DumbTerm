@@ -4,7 +4,7 @@ A browser-based Linux playground for learning Linux administration, command-line
 
 GLinux is the GLab-branded version of [DumbTerm](https://github.com/DumbWareio/DumbTerm), which provides the browser terminal and Docker foundation. The upstream GPL-3.0 license and attribution are retained.
 
-> Status: Initial branding and learning-lab preparation. A successful GitHub commit does not mean the service is deployed.
+> Status: GLinux branding, Docker configuration, starter labs, and CI build workflow are committed. The application has not yet been deployed to a public host.
 
 ## Features
 
