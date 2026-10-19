@@ -1,0 +1,21 @@
+name: GLinux CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Validate Docker Compose configuration
+        run: DUMBTERM_PIN=246810 docker compose config --quiet
+      - name: Build GLinux container
+        run: docker build --tag glinux:ci .
