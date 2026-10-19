@@ -16,5 +16,4 @@ services:
       ENABLE_STARSHIP: ${ENABLE_STARSHIP:-true}
       LOCKOUT_TIME: ${DUMBTERM_LOCKOUT_TIME:-15}
       MAX_SESSION_AGE: ${DUMBTERM_MAX_SESSION_AGE:-24}
-      # Before public deployment, set ALLOWED_ORIGINS to your exact trusted GLab origin.
-      # ALLOWED_ORIGINS: ${DUMBTERM_ALLOWED_ORIGINS}
+      ALLOWED_ORIGINS: ${DUMBTERM_ALLOWED_ORIGINS:-http://localhost:3000}
