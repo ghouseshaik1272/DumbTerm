@@ -1,7 +1,7 @@
 {
   "name": "dumbterm",
   "version": "1.2.0",
-  "description": "A stupidly simple web-based terminal emulator, with common tools and Starship enabled (via Docker)! 🚀",
+  "description": "GLinux by GLab: a browser-based Linux terminal and practice playground, based on DumbTerm.",
   "main": "server.js",
   "scripts": {
     "start": "npm run copy-xterm && node server.js",
