@@ -1,0 +1,4 @@
+{$GLINUX_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy glinux:3000
+}
